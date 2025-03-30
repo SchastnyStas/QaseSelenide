@@ -18,7 +18,7 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseTest {
     protected LoginSteps loginSteps;
-    public static String USER = PropertyReader.getProperty("user");
+    public static String EMAIL = PropertyReader.getProperty("email");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
 
@@ -44,9 +44,9 @@ loginSteps = new LoginSteps();
         initPage();
     }
 
-    @AfterMethod
-    public void endTest() {
-        getWebDriver().quit();
-    }
+//    @AfterMethod
+//    public void endTest() {
+//        getWebDriver().quit();
+//    }
 }
 

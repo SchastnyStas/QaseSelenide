@@ -16,19 +16,24 @@ public class LoginPage extends BasePage {
     public LoginPage() {
     }
 
-       public LoginPage openLogin(String url) {
+       public LoginPage openLoginPage(String url) {
         open(url);
+        return this;
+    }
+    public LoginPage isOpened(){
+        SIGN_IN.shouldBe(Condition.visible);
         return this;
     }
 
 
     private LoginPage fillLoginForm(String email, String password) {
+        isOpened();
         new Input("email").write(email);
         new Input("password").write(password);
         new Button().click(SIGN_IN);
         return this;
     }
-    public static ProjectsListPage login(String email, String password) {
+    public ProjectsListPage login(String email, String password) {
         fillLoginForm(email, password);
         return new ProjectsListPage();
     }

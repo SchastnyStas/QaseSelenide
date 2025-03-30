@@ -5,6 +5,6 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest{
     @Test
     public void successLogin(){
-        loginSteps.login(USER, PASSWORD, LOGIN_URL);
+        loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
     }
 }

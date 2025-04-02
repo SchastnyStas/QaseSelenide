@@ -2,9 +2,8 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import elements.Input;
-
-import java.awt.*;
+import elements.Button;
+import elements.NameInput;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
@@ -28,11 +27,12 @@ public class LoginPage extends BasePage {
 
     private LoginPage fillLoginForm(String email, String password) {
         isOpened();
-        new Input("email").write(email);
-        new Input("password").write(password);
+        new NameInput("email").writeTextToInput(email);
+        new NameInput("password").writeTextToInput(password);
         new Button().click(SIGN_IN);
         return this;
     }
+
     public ProjectsListPage login(String email, String password) {
         fillLoginForm(email, password);
         return new ProjectsListPage();

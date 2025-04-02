@@ -4,26 +4,41 @@ import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.*;
 import steps.LoginSteps;
+import steps.ProjectSteps;
+import steps.SuiteSteps;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 
-
 public class BaseTest {
-    protected LoginSteps loginSteps;
     public static String EMAIL = PropertyReader.getProperty("email");
     public static String PASSWORD = PropertyReader.getProperty("password");
     public static String LOGIN_URL = PropertyReader.getProperty("loginUrl");
 
+    protected LoginSteps loginSteps;
+    protected ProjectsListPage projectsListPage;
+    protected NewProjectModalWindow newProjectModalWindow;
+    protected ProjectSteps projectSteps;
+    protected NewSuiteModalWindow newSuiteModalWindow;
+    protected SuiteSteps suiteSteps;
+    protected SuitePage suitePage;
+    protected ProjectPage projectPage;
+
     public void initPage() {
-loginSteps = new LoginSteps();
+        loginSteps = new LoginSteps();
+        projectsListPage = new ProjectsListPage();
+        newProjectModalWindow = new NewProjectModalWindow();
+        projectSteps = new ProjectSteps();
+        newSuiteModalWindow = new NewSuiteModalWindow();
+        suiteSteps = new SuiteSteps();
+        suitePage = new SuitePage();
+        projectPage = new ProjectPage();
     }
 
 

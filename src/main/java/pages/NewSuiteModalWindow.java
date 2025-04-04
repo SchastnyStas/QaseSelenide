@@ -13,13 +13,7 @@ public class NewSuiteModalWindow extends BasePage {
 
     public ProjectPage addSuite(Suite suite) {
         new IdInput("title").writeTextToInput(suite.getSuiteName());
-        // new IdInput("description").writeTextToInput(suite.getDescription());
-        //  new IdInput("preconditions").writeTextToInput(suite.getPreconditions());
         new Button().click(CREATE_SUITE_BUTTON);
-
         return new ProjectPage();
     }
-//    public SuitePage suitePage(){
-//        return new SuitePage();
-//    }
 }

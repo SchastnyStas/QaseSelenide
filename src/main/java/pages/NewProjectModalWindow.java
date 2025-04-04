@@ -1,13 +1,10 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import elements.Button;
 import elements.IdInput;
 import object.Project;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class NewProjectModalWindow extends BasePage {
@@ -21,8 +18,4 @@ public class NewProjectModalWindow extends BasePage {
         new Button().click(CREATE_PROJECT_BUTTON);
         return new ProjectPage();
     }
-
-//      public ProjectsListPage clickOnProjectList() {
-//        return new ProjectsListPage().open("user");
-//    }
 }

@@ -10,7 +10,8 @@ public class Button {
     public void click(SelenideElement selenideElement) {
         selenideElement.shouldBe(Condition.visible).click();
     }
-    public void visible(SelenideElement selenideElement){
+
+    public void visible(SelenideElement selenideElement) {
         selenideElement.shouldBe(Condition.visible);
     }
 }

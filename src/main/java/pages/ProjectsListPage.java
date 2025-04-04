@@ -6,7 +6,6 @@ import elements.Button;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-
 public class ProjectsListPage extends BasePage {
 
     private static final SelenideElement CREATE_NEW_PROJECT = $x("//*[text()='Create new project']");
@@ -43,5 +42,4 @@ public class ProjectsListPage extends BasePage {
         new Button().click(DELETE_PROJECT_BUTTON);
         return new ProjectsListPage();
     }
-
 }

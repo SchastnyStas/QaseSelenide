@@ -4,15 +4,18 @@ import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
 import steps.LoginSteps;
 import steps.ProjectSteps;
 import steps.SuiteSteps;
+import steps.TestCaseSteps;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 
@@ -27,8 +30,10 @@ public class BaseTest {
     protected ProjectSteps projectSteps;
     protected NewSuiteModalWindow newSuiteModalWindow;
     protected SuiteSteps suiteSteps;
-    protected SuitePage suitePage;
     protected ProjectPage projectPage;
+    protected NewTestCaseModalWindow newTestCaseModalWindow;
+    protected TestCaseSteps testCaseSteps;
+    protected TestCasePage testCasePage;
 
     public void initPage() {
         loginSteps = new LoginSteps();
@@ -37,10 +42,11 @@ public class BaseTest {
         projectSteps = new ProjectSteps();
         newSuiteModalWindow = new NewSuiteModalWindow();
         suiteSteps = new SuiteSteps();
-        suitePage = new SuitePage();
         projectPage = new ProjectPage();
+        newTestCaseModalWindow = new NewTestCaseModalWindow();
+        testCaseSteps = new TestCaseSteps();
+        testCasePage = new TestCasePage();
     }
-
 
     @BeforeMethod
     public void initTest() {
@@ -59,9 +65,9 @@ public class BaseTest {
         initPage();
     }
 
-//    @AfterMethod
-//    public void endTest() {
-//        getWebDriver().quit();
-//    }
+    @AfterMethod
+    public void endTest() {
+        getWebDriver().quit();
+    }
 }
 

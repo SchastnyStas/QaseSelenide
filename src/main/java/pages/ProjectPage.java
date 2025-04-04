@@ -15,11 +15,10 @@ public class ProjectPage extends BasePage {
     private static final SelenideElement DELETE_SUITE_BUTTON = $x("//button[contains(@aria-label, 'Delete suite')]");
     private static final SelenideElement CONFIRMATION_DELETE_SUITE_BUTTON = $x("//button[@type='submit" +
             "']//span[contains(text(), 'Delete')]");
-
     private static final SelenideElement NO_SUITE_MESSAGE = $x("//span[text()='Create new suite']");
+    private static final String LOCATOR = "//h3[text()='%s']";
 
-     private static final String LOCATOR = "//h3[text()='%s']";
-
+    private static final String GET_TEST_CASE_NAME_VISIBLE = "//*[@class='OZXFF4']";
 
     public ProjectPage waitForPageToLoad() {
         NEW_TEST_BUTTON.shouldBe(Condition.visible);
@@ -36,10 +35,10 @@ public class ProjectPage extends BasePage {
         return new NewSuiteModalWindow();
     }
 
-    public String getSuiteNameText(String suiteName){
-         SelenideElement locatorText = $x(String.format(LOCATOR,
-                       suiteName));
-         return locatorText.getText();
+    public String getSuiteNameText(String suiteName) {
+        SelenideElement locatorText = $x(String.format(LOCATOR,
+                suiteName));
+        return locatorText.getText();
     }
 
     public ProjectPage deleteSuite() {
@@ -48,9 +47,18 @@ public class ProjectPage extends BasePage {
         return new ProjectPage();
     }
 
-
     public boolean checkEmptySuiteList() {
         NO_SUITE_MESSAGE.shouldBe(Condition.visible);
         return NO_SUITE_MESSAGE.isDisplayed();
+    }
+
+    public NewTestCaseModalWindow openNewTestCaseModalWindow() {
+        new Button().click(NEW_TEST_BUTTON);
+        return new NewTestCaseModalWindow();
+    }
+
+    public String getTestCaseTitleText() {
+        SelenideElement locatorText = $x(String.format(GET_TEST_CASE_NAME_VISIBLE));
+        return locatorText.getText();
     }
 }

@@ -2,7 +2,6 @@ package steps;
 
 import io.qameta.allure.Step;
 import object.Suite;
-import pages.ProjectPage;
 
 public class SuiteSteps extends BaseSteps {
 
@@ -19,5 +18,4 @@ public class SuiteSteps extends BaseSteps {
         projectPage
                 .deleteSuite();
     }
-
 }

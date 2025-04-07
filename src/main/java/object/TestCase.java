@@ -18,4 +18,7 @@ public class TestCase {
     private String isFlaky;
     private String behavior;
     private String automationStatus;
+    private String stepAction;
+    private String data;
+    private String expectedResult;
 }

@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class NewSuiteModalWindow extends BasePage {
 
-    private static final SelenideElement CREATE_SUITE_BUTTON = $x("//span[text()='Create']");
+    private static final SelenideElement CREATE_SUITE_BUTTON = $x("//button[@type='submit']");
 
     public ProjectPage addSuite(Suite suite) {
         new IdInput("title").writeTextToInput(suite.getSuiteName());

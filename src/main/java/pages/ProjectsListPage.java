@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ProjectsListPage extends BasePage {
 
-    private static final SelenideElement CREATE_NEW_PROJECT = $x("//*[text()='Create new project']");
+    private static final SelenideElement CREATE_NEW_PROJECT = $x("//button[@type='button']//span[contains(text(), 'Create new project')]");
     private static final String GET_PROJECT_NAME = "//*[contains(text(), '%s')]";
     private static final SelenideElement REMOVE_PROJECT_BUTTON = $x("//*[@data-testid='remove']");
     private static final SelenideElement NO_PROJECTS_MESSAGE = $x("//div[text()='Looks like you don’t have any projects yet.']");

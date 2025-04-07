@@ -14,8 +14,6 @@ public class TestCaseTest extends BaseTest {
 
     @Test
     public void testCaseCreate() {
-        loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
-
         Project project = Project.builder()
                 .projectName("Web Application" + random.nextInt(5))
                 .projectCode("WB" + random.nextInt(5))
@@ -31,23 +29,31 @@ public class TestCaseTest extends BaseTest {
                 .isFlaky("Yes")
                 .behavior("Positive")
                 .automationStatus("Automated")
+                .stepAction("Go" + random.nextInt(5))
+                .data("Good task" + random.nextInt(5))
+                .expectedResult("You win!")
                 .build();
 
         String testCaseTitle = testCase.getTitleName();
 
         projectSteps.createProject(project);
         testCaseSteps.createTestCase(testCase);
-        softAssert.assertEquals(projectPage.getTestCaseTitleText(), testCaseTitle);
-        softAssert.assertEquals(testCase.getStatus(), "Draft", "Status mismatch");
-        softAssert.assertEquals(testCase.getSeverity(), "Major", "Severity mismatch");
-        softAssert.assertEquals(testCase.getPriority(), "Low", "Priority mismatch");
-        softAssert.assertEquals(testCase.getType(), "Smoke", "Type mismatch");
-        softAssert.assertEquals(testCase.getLayer(), "API", "Layer mismatch");
-        softAssert.assertEquals(testCase.getIsFlaky(), "Yes", "IsFlaky mismatch");
-        softAssert.assertEquals(testCase.getBehavior(), "Positive", "Behavior mismatch");
-        softAssert.assertEquals(testCase.getAutomationStatus(), "Automated", "AutomationStatus mismatch");
-        testCaseSteps.deleteTestCase();
-        softAssert.assertTrue(projectPage.checkEmptySuiteList());
+
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Status"), "Draft");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Severity"), "Major");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Priority"), "Low");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Type"), "Smoke");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Layer"), "API");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Is flaky"), "Yes");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Behavior"), "Positive");
+        softAssert.assertEquals(testCasePage.assertComboBoxOption("Automation status"),
+                "Automated");
+        softAssert.assertEquals(testCasePage.getTestCaseTitleText(),
+                testCaseTitle);
+        testCaseSteps.closeTestCaseCard();
+        softAssert.assertEquals(projectPage.checkVisibilityTestCase(testCaseTitle), testCaseTitle);
+
+        testCaseSteps.deleteTestCase(testCaseTitle);
         projectSteps.goToProjects();
         projectSteps.deleteProject();
         softAssert.assertAll();

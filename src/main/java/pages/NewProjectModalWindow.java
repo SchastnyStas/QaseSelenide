@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class NewProjectModalWindow extends BasePage {
 
-    private static final SelenideElement CREATE_PROJECT_BUTTON = $x("//span[@class='B9YsTi' and text()='Create project']");
+    private static final SelenideElement CREATE_PROJECT_BUTTON = $x("//button[@type='submit']");
 
     public ProjectPage createNewProject(Project project) {
         new IdInput("project-name").writeTextToInput(project.getProjectName());

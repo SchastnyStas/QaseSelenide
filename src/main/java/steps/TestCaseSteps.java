@@ -5,7 +5,7 @@ import object.TestCase;
 
 public class TestCaseSteps extends BaseSteps {
 
-    @Step("Create new test case")
+    @Step("Create a new test case")
     public TestCaseSteps createTestCase(TestCase testCase) {
         projectPage
                 .openNewTestCaseModalWindow()
@@ -15,8 +15,13 @@ public class TestCaseSteps extends BaseSteps {
     }
 
     @Step("Delete test case")
-    public void deleteTestCase() {
-        testCasePage
-                .deleteTestCase();
+    public void deleteTestCase(String testCaseName) {
+        projectPage.openTestCase(testCaseName);
+        testCasePage.deleteTestCase();
+    }
+
+    @Step("Close test case card")
+    public void closeTestCaseCard() {
+        testCasePage.closeTestCase();
     }
 }

@@ -12,7 +12,6 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void successCreate() {
-        loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
 
         Project project = Project.builder()
                 .projectName("Web Application" + random.nextInt(5))

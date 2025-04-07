@@ -16,9 +16,10 @@ public class ProjectPage extends BasePage {
     private static final SelenideElement CONFIRMATION_DELETE_SUITE_BUTTON = $x("//button[@type='submit" +
             "']//span[contains(text(), 'Delete')]");
     private static final SelenideElement NO_SUITE_MESSAGE = $x("//span[text()='Create new suite']");
-    private static final String LOCATOR = "//h3[text()='%s']";
+    private static final String SUITE_NAME_LOCATOR = "//h3[text()='%s']";
+    private static final String GET_TITLE_NAME_IN_SUITE_CART = "//*[@id='suitecases-container" +
+            "']//*[contains(text(), '%s')]";
 
-    private static final String GET_TEST_CASE_NAME_VISIBLE = "//*[@class='OZXFF4']";
 
     public ProjectPage waitForPageToLoad() {
         NEW_TEST_BUTTON.shouldBe(Condition.visible);
@@ -36,7 +37,7 @@ public class ProjectPage extends BasePage {
     }
 
     public String getSuiteNameText(String suiteName) {
-        SelenideElement locatorText = $x(String.format(LOCATOR,
+        SelenideElement locatorText = $x(String.format(SUITE_NAME_LOCATOR,
                 suiteName));
         return locatorText.getText();
     }
@@ -44,7 +45,7 @@ public class ProjectPage extends BasePage {
     public ProjectPage deleteSuite() {
         new Button().click(DELETE_SUITE_BUTTON);
         new Button().click(CONFIRMATION_DELETE_SUITE_BUTTON);
-        return new ProjectPage();
+        return this;
     }
 
     public boolean checkEmptySuiteList() {
@@ -57,8 +58,14 @@ public class ProjectPage extends BasePage {
         return new NewTestCaseModalWindow();
     }
 
-    public String getTestCaseTitleText() {
-        SelenideElement locatorText = $x(String.format(GET_TEST_CASE_NAME_VISIBLE));
-        return locatorText.getText();
+    public TestCasePage openTestCase(String testCaseName) {
+        $x(String.format(GET_TITLE_NAME_IN_SUITE_CART, testCaseName)).click();
+        return new TestCasePage();
+    }
+
+    public String checkVisibilityTestCase(String testCaseName) {
+        return $x(String.format(GET_TITLE_NAME_IN_SUITE_CART, testCaseName))
+                .shouldBe(Condition.visible)
+                .getText();
     }
 }

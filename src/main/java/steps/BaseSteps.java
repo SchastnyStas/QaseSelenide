@@ -1,9 +1,6 @@
 package steps;
 
-import pages.LoginPage;
-import pages.ProjectPage;
-import pages.ProjectsListPage;
-import pages.TestCasePage;
+import pages.*;
 
 public class BaseSteps {
     protected ProjectPage projectPage;
@@ -16,6 +13,5 @@ public class BaseSteps {
         this.projectPage = new ProjectPage();
         this.loginPage = new LoginPage();
         this.testCasePage = new TestCasePage();
-
     }
 }

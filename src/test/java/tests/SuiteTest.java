@@ -14,8 +14,6 @@ public class SuiteTest extends BaseTest {
     @Test
     public void suiteCreate() {
 
-        loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
-
         Project project = Project.builder()
                 .projectName("Web Application" + random.nextInt(5))
                 .projectCode("WB" + random.nextInt(5))

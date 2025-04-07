@@ -6,7 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.*;
+import pages.ProjectPage;
+import pages.ProjectsListPage;
+import pages.TestCasePage;
 import steps.LoginSteps;
 import steps.ProjectSteps;
 import steps.SuiteSteps;
@@ -26,24 +28,18 @@ public class BaseTest {
 
     protected LoginSteps loginSteps;
     protected ProjectsListPage projectsListPage;
-    protected NewProjectModalWindow newProjectModalWindow;
     protected ProjectSteps projectSteps;
-    protected NewSuiteModalWindow newSuiteModalWindow;
     protected SuiteSteps suiteSteps;
     protected ProjectPage projectPage;
-    protected NewTestCaseModalWindow newTestCaseModalWindow;
     protected TestCaseSteps testCaseSteps;
     protected TestCasePage testCasePage;
 
     public void initPage() {
         loginSteps = new LoginSteps();
         projectsListPage = new ProjectsListPage();
-        newProjectModalWindow = new NewProjectModalWindow();
         projectSteps = new ProjectSteps();
-        newSuiteModalWindow = new NewSuiteModalWindow();
         suiteSteps = new SuiteSteps();
         projectPage = new ProjectPage();
-        newTestCaseModalWindow = new NewTestCaseModalWindow();
         testCaseSteps = new TestCaseSteps();
         testCasePage = new TestCasePage();
     }
@@ -53,6 +49,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         options.addArguments("--disable-popup-blocking");
+        options.addArguments("-headless");
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);
         WebDriver driver = new ChromeDriver(options);
@@ -63,6 +60,7 @@ public class BaseTest {
         Configuration.headless = false;
         Configuration.browserSize = "1024x768";
         initPage();
+        loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
     }
 
     @AfterMethod

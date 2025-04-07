@@ -15,12 +15,12 @@ public class TestCaseTest extends BaseTest {
     @Test
     public void testCaseCreate() {
         Project project = Project.builder()
-                .projectName("Web Application" + random.nextInt(5))
-                .projectCode("WB" + random.nextInt(5))
-                .description("Very Good Project!" + random.nextInt(5))
+                .projectName("Web Application" + random.nextInt(50))
+                .projectCode("WB" + random.nextInt(50))
+                .description("Very Good Project!" + random.nextInt(50))
                 .build();
         TestCase testCase = TestCase.builder()
-                .titleName("Authorization" + random.nextInt(5))
+                .titleName("Authorization" + random.nextInt(50))
                 .status("Draft")
                 .severity("Major")
                 .priority("Low")
@@ -29,8 +29,8 @@ public class TestCaseTest extends BaseTest {
                 .isFlaky("Yes")
                 .behavior("Positive")
                 .automationStatus("Automated")
-                .stepAction("Go" + random.nextInt(5))
-                .data("Good task" + random.nextInt(5))
+                .stepAction("Go" + random.nextInt(50))
+                .data("Good task" + random.nextInt(50))
                 .expectedResult("You win!")
                 .build();
 

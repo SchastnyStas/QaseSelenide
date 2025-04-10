@@ -2,9 +2,10 @@ package tests;
 
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
     @Test
-    public void successLogin(){
+    public void successLogin() {
         loginSteps.login(EMAIL, PASSWORD, LOGIN_URL);
+        projectsListPage.openNewProjectModalWindow();
     }
 }
